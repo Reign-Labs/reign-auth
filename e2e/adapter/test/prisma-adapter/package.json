@@ -1,0 +1,21 @@
+{
+  "name": "@reign-auth-test/prisma-adapter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e:integration": "vitest run",
+    "prepare": "prisma generate"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/prisma-adapter": "workspace:*",
+    "@reign-auth/test-utils": "workspace:*",
+    "@prisma/adapter-better-sqlite3": "^7.4.1",
+    "@prisma/adapter-mariadb": "^7.4.1",
+    "@prisma/adapter-pg": "^7.4.1",
+    "@prisma/client": "^7.4.1",
+    "reign-auth": "workspace:*",
+    "better-sqlite3": "^12.6.2",
+    "prisma": "^7.4.1"
+  }
+}

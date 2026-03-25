@@ -1,0 +1,62 @@
+{
+  "name": "@reign-auth/telemetry",
+  "version": "1.5.7-beta.1",
+  "description": "Telemetry package for Reign Auth",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://auth.reign-labs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reign-Labs/reign-auth.git",
+    "directory": "packages/telemetry"
+  },
+  "keywords": [
+    "auth",
+    "telemetry",
+    "typescript",
+    "reign-auth"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint:package": "publint run --strict",
+    "lint:types": "attw --profile esm-only --pack .",
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "dev-source": "./src/index.ts",
+      "types": "./dist/index.d.mts",
+      "node": "./dist/node.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "index": [
+        "dist/index.d.mts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@reign-auth/utils": "workspace:*",
+    "@reign-auth/fetch": "workspace:*"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "tsdown": "catalog:",
+    "type-fest": "^5.4.4"
+  },
+  "peerDependencies": {
+    "@reign-auth/core": "workspace:*"
+  }
+}

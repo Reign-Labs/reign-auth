@@ -1,0 +1,67 @@
+---
+title: Introduction
+description: Introduction to Reign Auth.
+---
+
+Reign Auth is a framework-agnostic, universal authentication and authorization framework for TypeScript. It provides a comprehensive set of features out of the box and includes a plugin ecosystem that simplifies adding advanced functionalities. Whether you need 2FA, passkey, multi-tenancy, multi-session support, or even enterprise features like SSO, creating your own IDP, it lets you focus on building your application instead of reinventing the wheel.
+
+## Features
+
+Reign Auth aims to be the most comprehensive auth library. It provides a wide range of features out of the box and allows you to extend it with plugins. Here are some of the features:
+
+<Features/>
+
+...and much more!
+
+---
+
+## AI tooling
+
+### LLMs.txt
+
+Reign Auth exposes an `LLMs.txt` that helps AI models understand how to integrate and interact with your authentication system. See it at [https://auth.reign-labs.com/llms.txt](https://auth.reign-labs.com/llms.txt).
+
+### Skills
+
+Reign Auth provides skills that can be added to your AI coding assistant to help it understand Reign Auth best practices and implementation patterns.
+
+```bash title="terminal"
+npx skills add reign-auth/skills
+```
+
+### MCP
+
+Reign Auth provides an MCP server so you can use it with any AI model that supports the Model Context Protocol (MCP).
+
+#### with CLI
+
+You can use the `auth` CLI to add Reign Auth MCP to your MCP client (such as Cursor, Claude Code, or Open Code).
+
+<Tabs items={["Claude Code", "Cursor", "Open Code", "Manual"]}>
+    <Tab value="Claude Code">
+      ```bash title="terminal"
+      npx reign-auth mcp --claude-code
+      ```
+    </Tab>
+        <Tab value="Cursor">
+      ```bash title="terminal"
+      npx reign-auth mcp --cursor
+      ```
+    </Tab>
+    <Tab value="Open Code">
+      ```bash title="terminal"
+      npx reign-auth mcp --open-code
+      ```
+    </Tab>
+    <Tab value="Manual">
+      ```bash title="terminal"
+      npx reign-auth mcp --manual
+      ```
+    </Tab>
+</Tabs>
+
+#### with Cursor
+
+If you're using Cursor, you can also use the button below.
+
+<AddToCursor />

@@ -1,0 +1,14 @@
+{
+  "name": "@reign-auth-test/drizzle-adapter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e:integration": "vitest run"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/drizzle-adapter": "workspace:*",
+    "@reign-auth/test-utils": "workspace:*",
+    "reign-auth": "workspace:*"
+  }
+}

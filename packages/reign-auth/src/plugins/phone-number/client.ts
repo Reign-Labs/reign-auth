@@ -1,0 +1,28 @@
+import type { ReignAuthClientPlugin } from "@reign-auth/core";
+import type { phoneNumber } from ".";
+
+import { PHONE_NUMBER_ERROR_CODES } from "./error-codes";
+
+export * from "./error-codes";
+
+export const phoneNumberClient = () => {
+	return {
+		id: "phoneNumber",
+		$InferServerPlugin: {} as ReturnType<typeof phoneNumber>,
+		atomListeners: [
+			{
+				matcher(path) {
+					return (
+						path === "/phone-number/update" ||
+						path === "/phone-number/verify" ||
+						path === "/sign-in/phone-number"
+					);
+				},
+				signal: "$sessionSignal",
+			},
+		],
+		$ERROR_CODES: PHONE_NUMBER_ERROR_CODES,
+	} satisfies ReignAuthClientPlugin;
+};
+
+export type * from "./types";

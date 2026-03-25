@@ -1,0 +1,15 @@
+{
+  "name": "@reign-auth-test/smoke",
+  "type": "module",
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/redis-storage": "workspace:*",
+    "@reign-auth/sso": "workspace:*",
+    "reign-auth": "workspace:*",
+    "ioredis": "^5.9.3",
+    "msw": "^2.12.10"
+  },
+  "scripts": {
+    "e2e:smoke": "node --test ./test/*.spec.ts"
+  }
+}

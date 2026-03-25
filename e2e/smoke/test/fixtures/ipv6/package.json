@@ -1,0 +1,10 @@
+{
+  "name": "@reign-auth-test/fixtures-ipv6",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@hono/node-server": "^1.19.10",
+    "reign-auth": "workspace:*",
+    "hono": "^4.12.7"
+  }
+}

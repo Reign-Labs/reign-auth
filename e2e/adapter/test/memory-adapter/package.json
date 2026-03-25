@@ -1,0 +1,14 @@
+{
+  "name": "@reign-auth-test/memory-adapter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e:integration": "vitest run"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/memory-adapter": "workspace:*",
+    "@reign-auth/test-utils": "workspace:*",
+    "reign-auth": "workspace:*"
+  }
+}

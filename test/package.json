@@ -1,0 +1,20 @@
+{
+  "name": "@reign-auth-test/test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage --coverage.provider=istanbul",
+    "lint:package": "publint run --strict",
+    "lint:types": "attw --profile esm-only --pack ."
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/fetch": "workspace:*",
+    "reign-auth": "workspace:*",
+    "msw": "^2.12.10",
+    "openid-client": "^6.8.2",
+    "undici": "^7.24.0",
+    "vitest": "catalog:vitest"
+  }
+}

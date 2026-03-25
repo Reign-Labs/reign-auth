@@ -1,0 +1,12 @@
+{
+  "name": "@reign-auth-test/fixtures-tsconfig-isolated-module-bundler",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "reign-auth": "workspace:*",
+    "reign-auth-harmony": "^1.3.0"
+  }
+}

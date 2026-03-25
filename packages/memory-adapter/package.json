@@ -1,0 +1,54 @@
+{
+  "name": "@reign-auth/memory-adapter",
+  "version": "1.5.7-beta.1",
+  "description": "Memory adapter for Reign Auth",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://auth.reign-labs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reign-Labs/reign-auth.git",
+    "directory": "packages/memory-adapter"
+  },
+  "keywords": [
+    "auth",
+    "memory",
+    "adapter",
+    "typescript",
+    "reign-auth"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint:package": "publint run --strict",
+    "lint:types": "attw --profile esm-only --pack .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "dev-source": "./src/index.ts",
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "peerDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/utils": "^0.3.0"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/utils": "^0.3.1",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  }
+}

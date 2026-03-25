@@ -1,0 +1,47 @@
+{
+  "name": "@reign-auth/test-utils",
+  "version": "1.5.7-beta.1",
+  "description": "Testing utilities for Reign Auth adapter development",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://auth.reign-labs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reign-Labs/reign-auth.git",
+    "directory": "packages/test-utils"
+  },
+  "keywords": [
+    "auth",
+    "testing",
+    "typescript",
+    "reign-auth"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./adapter": {
+      "dev-source": "./src/adapter/index.ts",
+      "default": "./dist/adapter.mjs",
+      "types": "./dist/adapter.d.mts"
+    }
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "reign-auth": "workspace:*",
+    "tsdown": "catalog:",
+    "vitest": "catalog:vitest"
+  },
+  "peerDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "reign-auth": "workspace:*",
+    "vitest": "catalog:vitest"
+  }
+}

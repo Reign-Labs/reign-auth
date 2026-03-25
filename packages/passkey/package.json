@@ -1,0 +1,77 @@
+{
+  "name": "@reign-auth/passkey",
+  "version": "1.5.7-beta.1",
+  "description": "Passkey plugin for Reign Auth",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://auth.reign-labs.com/docs/plugins/passkey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Reign-Labs/reign-auth.git",
+    "directory": "packages/passkey"
+  },
+  "keywords": [
+    "auth",
+    "passkey",
+    "typescript",
+    "reign-auth"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint:package": "publint run --strict",
+    "lint:types": "attw --profile esm-only --pack .",
+    "typecheck": "tsc --project tsconfig.json",
+    "test": "vitest",
+    "coverage": "vitest run --coverage --coverage.provider=istanbul"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "dev-source": "./src/index.ts",
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./client": {
+      "dev-source": "./src/client.ts",
+      "types": "./dist/client.d.mts",
+      "default": "./dist/client.mjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.mts"
+      ],
+      "client": [
+        "./dist/client.d.mts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@simplewebauthn/browser": "^13.2.2",
+    "@simplewebauthn/server": "^13.2.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "reign-auth": "workspace:*",
+    "tsdown": "catalog:"
+  },
+  "peerDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/utils": "workspace:*",
+    "@reign-auth/fetch": "workspace:*",
+    "reign-auth": "workspace:*",
+    "reign-call": "workspace:*",
+    "nanostores": "^1.0.1"
+  }
+}

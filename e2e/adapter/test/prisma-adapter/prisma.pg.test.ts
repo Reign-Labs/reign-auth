@@ -1,0 +1,52 @@
+import type { ReignAuthOptions } from "@reign-auth/core";
+import { prismaAdapter } from "@reign-auth/prisma-adapter";
+import { testAdapter } from "@reign-auth/test-utils/adapter";
+import {
+	authFlowTestSuite,
+	caseInsensitiveTestSuite,
+	joinsTestSuite,
+	normalTestSuite,
+	numberIdTestSuite,
+	transactionsTestSuite,
+	uuidTestSuite,
+} from "../adapter-factory";
+import { generateAuthConfigFile } from "./generate-auth-config";
+import { generatePrismaSchema } from "./generate-prisma-schema";
+import {
+	destroyPrismaClient,
+	getPrismaClient,
+	incrementMigrationCount,
+} from "./get-prisma-client";
+import { pushPrismaSchema } from "./push-prisma-schema";
+
+const dialect = "postgresql";
+const { execute } = await testAdapter({
+	adapter: async () => {
+		const db = await getPrismaClient(dialect);
+		return prismaAdapter(db, {
+			provider: dialect,
+			debugLogs: { isRunningAdapterTests: true },
+		});
+	},
+	runMigrations: async (options: ReignAuthOptions) => {
+		const db = await getPrismaClient(dialect);
+		const migrationCount = incrementMigrationCount();
+		await generateAuthConfigFile(options);
+		await generatePrismaSchema(options, db, migrationCount, dialect);
+		await pushPrismaSchema(dialect);
+		destroyPrismaClient({ migrationCount: migrationCount - 1, dialect });
+	},
+	tests: [
+		normalTestSuite(),
+		transactionsTestSuite(),
+		authFlowTestSuite(),
+		numberIdTestSuite(),
+		joinsTestSuite(),
+		uuidTestSuite({}),
+		caseInsensitiveTestSuite(),
+	],
+	onFinish: async () => {},
+	prefixTests: "pg",
+});
+
+execute();

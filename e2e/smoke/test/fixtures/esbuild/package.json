@@ -1,0 +1,10 @@
+{
+  "name": "@reign-auth-test/fixtures-esbuild",
+  "private": true,
+  "dependencies": {
+    "reign-auth": "workspace:*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.3"
+  }
+}

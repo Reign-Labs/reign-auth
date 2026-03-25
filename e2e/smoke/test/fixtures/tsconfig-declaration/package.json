@@ -1,0 +1,16 @@
+{
+  "name": "@reign-auth-test/fixtures-tsconfig-declaration",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "@reign-auth/oauth-provider": "workspace:*",
+    "@reign-auth/passkey": "workspace:*",
+    "@reign-auth/sso": "workspace:*",
+    "@reign-auth/stripe": "workspace:*",
+    "reign-auth": "workspace:*",
+    "stripe": "^20.4.0"
+  }
+}

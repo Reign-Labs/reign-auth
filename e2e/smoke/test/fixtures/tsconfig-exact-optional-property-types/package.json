@@ -1,0 +1,12 @@
+{
+  "name": "@reign-auth-test/fixtures-tsconfig-exact-optional-property-types",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.json"
+  },
+  "dependencies": {
+    "reign-auth": "workspace:*",
+    "@reign-auth/sso": "workspace:*"
+  }
+}

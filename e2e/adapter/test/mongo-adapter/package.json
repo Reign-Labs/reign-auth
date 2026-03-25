@@ -1,0 +1,15 @@
+{
+  "name": "@reign-auth-test/mongo-adapter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e:integration": "vitest run"
+  },
+  "dependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/mongo-adapter": "workspace:*",
+    "@reign-auth/test-utils": "workspace:*",
+    "@prisma/client": "^5.22.0",
+    "reign-auth": "workspace:*"
+  }
+}

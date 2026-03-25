@@ -1,0 +1,13 @@
+{
+  "name": "@reign-auth-test/adapter-factory",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "e2e:integration": "vitest run"
+  },
+  "devDependencies": {
+    "@reign-auth/core": "workspace:*",
+    "@reign-auth/test-utils": "workspace:*",
+    "reign-auth": "workspace:*"
+  }
+}
