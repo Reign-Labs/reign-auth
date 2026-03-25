@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+*.md
+!README.md
+e2e
+test
+demo
+coverage
+.vscode
+.idea
