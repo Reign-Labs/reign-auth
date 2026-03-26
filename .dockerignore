@@ -1,11 +1,14 @@
 node_modules
 .next
+dist
 .git
 *.md
 !README.md
+.turbo
+coverage
+.nyc_output
+demo
 e2e
 test
-demo
-coverage
 .vscode
-.idea
+.claude

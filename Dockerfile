@@ -3,18 +3,14 @@ RUN corepack enable && corepack prepare pnpm@10.30.2 --activate
 WORKDIR /app
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc* ./
-COPY landing/package.json ./landing/
-COPY packages/ ./packages/
-COPY docs/ ./docs/
+# Copy everything — fumadocs-mdx postinstall needs source.config.ts and docs content
+COPY . .
 RUN pnpm install --frozen-lockfile
 
 FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/landing/node_modules ./landing/node_modules
-COPY . .
-WORKDIR /app/landing
+COPY --from=deps /app ./
 RUN pnpm build
+RUN pnpm --filter=docs build
 
 FROM base AS runner
 WORKDIR /app
