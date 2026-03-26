@@ -1,10 +1,15 @@
 import { createMDX } from "fumadocs-mdx/next";
+import { resolve, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	output: "standalone",
+	outputFileTracingRoot: resolve(__dirname, ".."),
 	turbopack: {
-		root: "..",
+		root: resolve(__dirname, ".."),
 	},
 	experimental: {
 		optimizePackageImports: [
