@@ -1,20 +1,10 @@
 FROM node:24-slim AS base
 RUN corepack enable && corepack prepare pnpm@10.30.2 --activate
 
-FROM base AS deps
-WORKDIR /app
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY landing/package.json ./landing/
-COPY packages/fetch/package.json ./packages/fetch/
-COPY packages/core/package.json ./packages/core/
-COPY packages/reign-auth/package.json ./packages/reign-auth/
-RUN pnpm install --frozen-lockfile --ignore-scripts
-
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/ ./
 COPY . .
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --filter docs... --frozen-lockfile
 
 # Build dependencies first
 RUN pnpm --filter @reign-auth/fetch build
