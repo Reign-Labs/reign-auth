@@ -5,8 +5,8 @@ FROM base AS builder
 WORKDIR /app
 COPY . .
 
-# Override workspace to only include what we need for the landing build
-RUN echo 'packages:\n  - "landing"\n  - "packages/*"' > pnpm-workspace.yaml
+# Override workspace to exclude e2e/test/docs that have broken deps
+RUN sed -i '/e2e/d; /- test/d; /- docs/d' pnpm-workspace.yaml
 
 RUN pnpm install --filter docs...
 
