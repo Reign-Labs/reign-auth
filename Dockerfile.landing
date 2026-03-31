@@ -1,4 +1,4 @@
-FROM node:24-alpine AS base
+FROM node:24-slim AS base
 RUN corepack enable && corepack prepare pnpm@10.30.2 --activate
 
 FROM base AS deps
@@ -8,16 +8,13 @@ COPY landing/package.json ./landing/
 COPY packages/fetch/package.json ./packages/fetch/
 COPY packages/core/package.json ./packages/core/
 COPY packages/reign-auth/package.json ./packages/reign-auth/
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
 FROM base AS builder
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/landing/node_modules ./landing/node_modules
-COPY --from=deps /app/packages/fetch/node_modules ./packages/fetch/node_modules
-COPY --from=deps /app/packages/core/node_modules ./packages/core/node_modules
-COPY --from=deps /app/packages/reign-auth/node_modules ./packages/reign-auth/node_modules
+COPY --from=deps /app/ ./
 COPY . .
+RUN pnpm install --frozen-lockfile
 
 # Build dependencies first
 RUN pnpm --filter @reign-auth/fetch build
@@ -26,7 +23,7 @@ RUN pnpm --filter @reign-auth/fetch build
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm --filter docs build
 
-FROM base AS runner
+FROM node:24-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
