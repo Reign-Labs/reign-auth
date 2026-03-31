@@ -4,6 +4,10 @@ RUN corepack enable && corepack prepare pnpm@10.30.2 --activate
 FROM base AS builder
 WORKDIR /app
 COPY . .
+
+# Override workspace to only include what we need for the landing build
+RUN echo 'packages:\n  - "landing"\n  - "packages/*"' > pnpm-workspace.yaml
+
 RUN pnpm install --filter docs...
 
 # Build dependencies first

@@ -1,0 +1,8 @@
+e2e
+test
+demo
+docs
+.git
+node_modules
+**/node_modules
+**/.next
