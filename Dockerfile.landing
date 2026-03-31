@@ -1,0 +1,46 @@
+FROM node:24-alpine AS base
+RUN corepack enable && corepack prepare pnpm@10.30.2 --activate
+
+FROM base AS deps
+WORKDIR /app
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY landing/package.json ./landing/
+COPY packages/fetch/package.json ./packages/fetch/
+COPY packages/core/package.json ./packages/core/
+COPY packages/reign-auth/package.json ./packages/reign-auth/
+RUN pnpm install --frozen-lockfile
+
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/landing/node_modules ./landing/node_modules
+COPY --from=deps /app/packages/fetch/node_modules ./packages/fetch/node_modules
+COPY --from=deps /app/packages/core/node_modules ./packages/core/node_modules
+COPY --from=deps /app/packages/reign-auth/node_modules ./packages/reign-auth/node_modules
+COPY . .
+
+# Build dependencies first
+RUN pnpm --filter @reign-auth/fetch build
+
+# Build landing
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN pnpm --filter docs build
+
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/landing/public ./landing/public
+COPY --from=builder --chown=nextjs:nodejs /app/landing/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/landing/.next/static ./landing/.next/static
+
+USER nextjs
+EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "landing/server.js"]
